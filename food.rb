@@ -5,6 +5,7 @@
 
 require 'nokogiri'
 require 'open-uri'
+require 'openssl'
 require 'optparse'
 require 'delegate'
 
@@ -46,7 +47,7 @@ class Mrlacnik
   end
 
   def doc
-    @doc ||= Nokogiri::HTML(URI.parse(FOOD_URL).open)
+    @doc ||= Nokogiri::HTML(URI.parse(FOOD_URL).open(ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE))
   end
 end
 
